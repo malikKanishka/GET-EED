@@ -59,7 +59,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 # Create uploads folder if it doesn't exist
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
-a =10;
+
 db = SQLAlchemy(app)
 
 # Load spaCy's English model for NLP processing
