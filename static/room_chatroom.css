@@ -1,0 +1,144 @@
+/* Global styles */
+body {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #4bff00, #00b2ff, #8a00d4, #d400ff);
+    background-size: 400% 400%; /* Creates the gradient's effect */
+    animation: gradientAnimation 3s ease infinite; /* Fast changing animation */
+    color: #ffffff; /* White text */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+/* Rainbow gradient animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    color: #4fd1c5; /* Teal for a pop of color */
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+/* Hover effect on h1 */
+h1:hover {
+    color: #ff6347; /* Change to tomato color on hover */
+}
+
+/* Room code */
+.room-code {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4fd1c5; /* Teal color */
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Message container */
+#messages {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for messages */
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* Individual message style */
+#messages p {
+    background-color: #1f4068; /* Dark blue bubble */
+    padding: 10px;
+    border-radius: 8px;
+    margin: 8px 0;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect on individual message */
+#messages p:hover {
+    background-color: #3498db; /* Light blue for hover effect */
+}
+
+/* Form container */
+#message-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Input field styling */
+#message-input {
+    width: 75%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #4fd1c5; /* Teal border */
+    font-size: 1rem;
+    color: #162447;
+    transition: border-color 0.3s ease;
+}
+
+/* Input field focus effect */
+#message-input:focus {
+    border-color: #ff6347; /* Change border color to tomato on focus */
+}
+
+/* Button styling */
+button {
+    background-color: #4fd1c5; /* Teal */
+    color: #1a1a2e;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect on button */
+button:hover {
+    background-color: #3ba99d; /* Slightly darker teal */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Message animation for sliding in */
+#messages p {
+    position: relative;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

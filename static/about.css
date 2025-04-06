@@ -1,0 +1,157 @@
+/* about.css */
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000;  /* Solid black background */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+/* About section styling */
+.about-section {
+    background-color: #111;  /* Slightly lighter black for contrast */
+    padding: 50px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    max-width: 800px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    transform: translateX(-100vw); /* Initial off-screen position */
+    animation: slideIn 1s forwards ease-in-out; /* Slide-in effect */
+}
+
+/* Neon border and glowing effect */
+.about-section::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00f4ff, #ff00d4, #00ff62, #ff004c);
+    background-size: 400%;
+    border-radius: 12px;
+    z-index: -1;
+    filter: blur(5px);
+    animation: neonGlow 5s linear infinite;
+}
+
+/* Container */
+.container {
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #00f4ff;
+    text-shadow: 0 0 10px rgba(0, 244, 255, 0.8);
+}
+
+/* Intro text */
+.intro-text {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    color: #f0f0f0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Mission and Vision section styling */
+.mission-vision {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Each box (Mission and Vision) */
+.box {
+    width: 45%;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effect for the boxes */
+.box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Box headings */
+h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff00d4;
+    text-shadow: 0 0 10px rgba(255, 0, 212, 0.8);
+}
+
+/* Paragraphs */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+/* CTA Button */
+.cta-button {
+    display: inline-block;
+    background-color: #00ff62;
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 18px;
+    margin-top: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 98, 0.6);
+}
+
+.cta-button:hover {
+    background-color: #00d453;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 98, 0.8);
+}
+
+/* Keyframes for neon glowing effect */
+@keyframes neonGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Keyframes for slide-in effect */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100vw);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

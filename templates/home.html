@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GETEE-ed Homepage</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">GETEE-ed</div>
+            <div class="search-box">
+                <input type="text" placeholder="Search for jobs, people, and more...">
+                <button type="submit">Search</button>
+            </div>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="home_chatroom.html">Chatroom</a> 
+                <a href="alljobs.html">Jobs</a>
+                <a href="nebot.html">Chatbot</a> 
+                <a href="ats.html">ATS</a>
+                <a href="interview1.html">Mock Interview</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="{{ url_for('profile') }}">View Profile</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="welcome-section">
+            <h1>Welcome to Your Professional Community</h1>
+            <p>Connect, learn, and grow your career.</p>
+            <!-- <button class="join-btn">Join Now</button> -->
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; Let's start your journey</p>
+    </footer>
+</body>
+</html>

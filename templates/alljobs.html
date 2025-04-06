@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs Available</title>
+    <link rel="stylesheet" href="/static/here.css">
+</head>
+<body>
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+        <h2>Jobs Available</h2>
+
+        <!-- Job Card 1 -->
+        <div class="job-card" data-job-id="1">
+            <h3>Frontend Developer</h3>
+            <p><strong>TechCorp</strong> - San Francisco, CA</p>
+            <p>We are looking for a talented frontend developer with experience in React.js and modern web technologies.</p>
+            <button class="apply-btn">Apply Now</button>
+            <button class="save-btn">Save Job</button>
+        </div>
+
+        <!-- Job Card 2 -->
+        <div class="job-card" data-job-id="2">
+            <h3>Data Scientist</h3>
+            <p><strong>DataX</strong> - New York, NY</p>
+            <p>Join our team of data scientists and work on cutting-edge AI projects.</p>
+            <button class="apply-btn">Apply Now</button>
+            <button class="save-btn">Save Job</button>
+        </div>
+
+        <!-- Job Card 3 -->
+        <div class="job-card" data-job-id="3">
+            <h3>Backend Engineer</h3>
+            <p><strong>Cloud Solutions</strong> - Austin, TX</p>
+            <p>Looking for a backend engineer with strong knowledge of Node.js and cloud infrastructure.</p>
+            <button class="apply-btn">Apply Now</button>
+            <button class="save-btn">Save Job</button>
+        </div>
+    </section>
+
+    <script>
+        // Get all the Save Job buttons
+        const saveButtons = document.querySelectorAll('.save-btn');
+
+        // Add an event listener to each Save Job button
+        saveButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Get job details from the parent div
+                const jobCard = this.closest('.job-card');
+                const jobTitle = jobCard.querySelector('h3').textContent;
+                const company = jobCard.querySelector('p').textContent;
+                const jobLocation = jobCard.querySelector('p').textContent.split(' - ')[1];
+
+                // Create job object
+                const job = { jobTitle, company, jobLocation };
+
+                // Get current wishlist from localStorage (or initialize as empty array)
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+                // Add new job to wishlist
+                wishlist.push(job);
+
+                // Save updated wishlist back to localStorage
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+                // Update button state
+                this.textContent = 'Saved';
+                this.disabled = true;
+                this.style.backgroundColor = '#ccc'; // Change button color to show it's disabled
+                alert('Saved to wishlist');
+            });
+        });
+    </script>
+</body>
+</html>

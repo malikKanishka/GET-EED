@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wishlist</title>
+    <link rel="stylesheet" href="/static/here.css">
+</head>
+<body>
+    <h2>Your Wishlist</h2>
+    <div class="wishlist-section">
+        <!-- Saved jobs will be displayed here -->
+    </div>
+
+    <script>
+        // Get saved jobs from localStorage
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        const wishlistSection = document.querySelector('.wishlist-section');
+
+        if (wishlist.length === 0) {
+            wishlistSection.innerHTML = "<p>No jobs saved yet.</p>";
+        } else {
+            wishlist.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.classList.add('job-card');
+                jobCard.innerHTML = `
+                    <h3>${job.jobTitle}</h3>
+                    <p><strong>${job.company}</strong> - ${job.jobLocation}</p>
+                    <button class="apply-btn">Apply Now</button>
+                `;
+                wishlistSection.appendChild(jobCard);
+            });
+        }
+    </script>
+</body>
+</html>

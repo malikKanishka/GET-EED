@@ -1,0 +1,116 @@
+/* Reset some default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff77ff, #00bcd4); /* Gradient background */
+    color: #fff;
+    text-align: center;
+    padding: 50px; /* Increased padding for more space */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem; /* Increased font size for the title */
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    color: #ffcc00;
+    text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5); /* Larger glow effect */
+}
+
+/* Main Chatbot container with a box around it */
+.chatbot-container {
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker semi-transparent background */
+    border-radius: 25px; /* Increased border radius for smoother corners */
+    width: 100%;
+    max-width: 700px; /* Increased max width */
+    padding: 40px; /* Increased padding for more space inside the box */
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4); /* Stronger shadow for better elevation */
+    border: 3px solid #ffcc00; /* Thicker gold border */
+}
+
+/* Form styling */
+form {
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Increased gap between input and button */
+}
+
+input[type="text"] {
+    padding: 18px; /* Increased padding for larger text field */
+    font-size: 1.4rem; /* Larger font size for input */
+    border-radius: 15px; /* More rounded corners */
+    border: none;
+    width: 350px; /* Wider input field */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transition: box-shadow 0.3s ease-in-out;
+    outline: none;
+    background-color: #fff;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); /* Neon glow effect */
+    border: 2px solid #ffcc00; /* Gold border on focus */
+}
+
+button[type="submit"] {
+    padding: 15px 25px; /* Larger button size */
+    font-size: 1.4rem; /* Larger font size */
+    background-color: #ff00ff;
+    color: #fff;
+    border: none;
+    border-radius: 30px; /* More rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    width: 350px; /* Wider button */
+}
+
+button[type="submit"]:hover {
+    background-color: #ff77ff;
+    transform: scale(1.1);
+}
+
+/* Chat box to show bot responses */
+.chat-box {
+    margin-top: 30px; /* Increased margin for better spacing */
+}
+
+.chat-box p {
+    background-color: rgba(0, 0, 0, 0.6); /* Darker semi-transparent background */
+    padding: 15px; /* Larger padding for better readability */
+    border-radius: 15px; /* More rounded corners */
+    font-size: 1.3rem; /* Larger font size */
+    margin-top: 15px; /* Increased margin for spacing between messages */
+    color: #fff;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+}
+
+.chat-box p strong {
+    color: #ffcc00;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    input[type="text"], button[type="submit"] {
+        width: 80%; /* Decreased width for smaller screens */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Slightly smaller title for smaller screens */
+    }
+
+    .chatbot-container {
+        padding: 30px; /* Reduced padding on smaller screens */
+        max-width: 90%; /* Allowing the container to take more space */
+    }
+}

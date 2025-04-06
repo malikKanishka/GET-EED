@@ -1,0 +1,167 @@
+/* Body Style */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #4e6ef2, #60d6fa, #ff00c8); /* Vibrant Gradient from blue to pink */
+  color: #e0e0e0; /* Light text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-size: 400% 400%; /* Smooth gradient animation */
+  animation: gradient-animation 6s ease infinite; /* Gradient animation */
+}
+
+/* Gradient Animation */
+@keyframes gradient-animation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+/* Form Container */
+.form-container {
+  max-width: 400px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input Fields */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #888;
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+  border-color: #00bcd4; /* Cyan border on focus */
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #00bcd4, #00e5ff); /* Cyan gradient */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #00e5ff, #00bcd4); /* Reverse gradient on hover */
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3); /* Light shadow on hover */
+}
+
+button:active {
+  background: linear-gradient(135deg, #008c9e, #00bcd4); /* Darker gradient when clicked */
+}
+
+/* Flash Messages */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+ul li {
+  background-color: #ff6f61; /* Red background for errors */
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Link Style */
+.register-link {
+  margin-top: 20px; /* Space above the link */
+}
+
+.register-link a {
+  color: #00bcd4;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+  color: #00e5ff; /* Lighter cyan color on hover */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 500px) {
+  .form-container {
+      padding: 20px;
+      width: 90%;
+  }
+
+  h2 {
+      font-size: 1.8rem;
+  }
+
+  input[type="text"], input[type="password"], button {
+      font-size: 14px;
+  }
+}
+/* Password Container */
+.password-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+  width: 100%;
+  padding-right: 50px; /* Extra space for the toggle button */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #00bcd4;
+  font-size: 14px;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+  color: #00e5ff; /* Lighter color on hover */
+}

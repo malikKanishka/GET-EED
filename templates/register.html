@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="static/style_reg.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ request.form.name }}">
+            <span>{{ errors.name }}</span>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ request.form.username }}">
+            <span>{{ errors.username }}</span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ request.form.email }}">
+            <span>{{ errors.email }}</span>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" value="{{ request.form.dob }}">
+            <span>{{ errors.dob }}</span>
+
+            <div class="password-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <button type="button" id="toggle-password">👁️</button>
+            </div>
+
+            <div class="password-container">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password">
+            </div>
+
+            <label for="skills">Skills:</label>
+            <textarea id="skills" name="skills">{{ request.form.skills }}</textarea>
+
+            <label for="education">Education:</label>
+            <textarea id="education" name="education">{{ request.form.education }}</textarea>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="Male" {% if request.form.gender == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if request.form.gender == 'Female' %}selected{% endif %}>Female</option>
+                <option value="Other" {% if request.form.gender == 'Other' %}selected{% endif %}>Other</option>
+            </select>
+            <span>{{ errors.gender }}</span>
+
+            <label for="certificates">Certificates:</label>
+            <textarea id="certificates" name="certificates">{{ request.form.certificates }}</textarea>
+
+            <label for="about">About:</label>
+            <textarea id="about" name="about">{{ request.form.about }}</textarea>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirm_password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                confirmPasswordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+                confirmPasswordField.type = 'password';
+            }
+        });
+    </script>
+
+</body>
+</html>

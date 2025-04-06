@@ -1,0 +1,99 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #dbe4ce, #d9d31d);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.register {
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.register h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.register input[type="text"],
+.register input[type="date"],
+.register input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.register input[type="text"]:hover,
+.register input[type="date"]:hover,
+.register input[type="password"]:hover {
+    border-color: #d9d31d;
+}
+
+.register span.no {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.register input[type="radio"] {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.register .date {
+    margin-bottom: 15px;
+}
+
+.register label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.register button {
+    width: 100%;
+    padding: 10px;
+    background-color: #d9d31d;
+    border: none;
+    border-radius: 8px;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register button:hover {
+    background-color: #c4be1a;
+}
+
+.register p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.register a:hover {
+    color: #d9d31d;
+    text-decoration: underline;
+}

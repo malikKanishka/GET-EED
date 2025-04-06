@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="static/room_chatroom.css">
+</head>
+<body>
+    <h1>Room Code: {{ code }}</h1>
+
+    <div id="messages">
+        {% for message in messages %}
+            <p><strong>{{ message.name }}:</strong> {{ message.message }}</p>
+        {% endfor %}
+    </div>
+
+    <form id="message-form">
+        <input type="text" id="message-input" placeholder="Type a message" required>
+        <button type="submit">Send</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        var socket = io.connect();
+
+        document.getElementById("message-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value;
+            if (message) {
+                socket.emit("message", { data: message });
+                messageInput.value = "";
+            }
+        });
+
+        socket.on("message", function(data) {
+            var messageDiv = document.createElement("div");
+            messageDiv.innerHTML = "<strong>" + data.name + ":</strong> " + data.message;
+            document.getElementById("messages").appendChild(messageDiv);
+        });
+    </script>
+</body>
+</html>

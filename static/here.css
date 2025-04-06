@@ -1,0 +1,44 @@
+/* Style the Jobs Section */
+.jobs-section {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style each job card */
+.job-card {
+    background-color: #f3f2ef;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Job title */
+.job-card h3 {
+    color: #0073b1;
+    margin-bottom: 5px;
+}
+
+/* Company name and location */
+.job-card p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Apply Now and Save buttons */
+.apply-btn, .save-btn {
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.apply-btn:hover, .save-btn:hover {
+    background-color: #005580;
+}

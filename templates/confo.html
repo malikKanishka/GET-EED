@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="/static/confo.css">
+<body>
+    <main>
+        <h1>Let's check your data is correct</h1>
+        <div id="data"></div>
+        <div>
+            <button id="confirmButton">Confirm</button>
+        </div>
+    </main>
+</body>
+<script>
+    // Retrieve data from localStorage
+    const json = localStorage.getItem('form');
+    const obj = JSON.parse(json);
+
+    // Dynamically display the form data
+    for (key in obj) {
+        const markup = `
+        <div>
+            <span>${key}: ${obj[key]}</span>
+        </div>
+        `;
+        document.getElementById('data').innerHTML += markup;
+    }
+
+    // Add event listener for the Confirm button to redirect to home.html
+    document.getElementById('confirmButton').addEventListener('click', () => {
+        window.location.href = 'home.html'; // Redirect to home.html
+    });
+</script>
+</html>

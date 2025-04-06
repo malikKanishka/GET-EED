@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERVIEWER</title>
+    <link rel="stylesheet" href="/static/too.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Let's Test Yourself</h2>
+    <video id="webcam" autoplay playsinline></video>
+    <br>
+    <button id="startButton">Start Interview</button>
+    <button id="stopButton" disabled>Stop Interview</button>
+    <br>
+    <button id="toggleVideoButton" disabled>Turn Video Off</button>
+    <button id="toggleAudioButton" disabled>Mute Microphone</button>
+
+    <!-- Questions Section -->
+    <div id="questionsContainer" style="display:none;">
+        <h3 id="currentQuestion">Question 1: Introduce yourself.</h3>
+        <button id="nextQuestionButton">Next Question</button>
+    </div>
+    
+    <!-- Video Rating Section -->
+    <div id="ratingContainer" style="display:none;">
+        <h3>Rate Your Video</h3>
+        <video id="recordedVideo" controls></video>
+        <br>
+        <label for="rating">Rate your performance:</label>
+        <select id="rating">
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+    </div>
+</div>
+<script>
+    
+        const videoElement = document.getElementById('webcam');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const toggleVideoButton = document.getElementById('toggleVideoButton');
+        const toggleAudioButton = document.getElementById('toggleAudioButton');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const currentQuestion = document.getElementById('currentQuestion');
+        const nextQuestionButton = document.getElementById('nextQuestionButton');
+        const ratingContainer = document.getElementById('ratingContainer');
+        const recordedVideo = document.getElementById('recordedVideo');
+        const rating = document.getElementById('rating');
+        
+        let stream;
+        let videoTrack;
+        let audioTrack;
+        let mediaRecorder;
+        let recordedChunks = [];
+        let questionIndex = 0;
+        let interviewStartTime;
+        
+        // Questions List
+        const questions = [
+            "Introduce yourself.",
+            "What are your strengths?",
+            "Why do you want this job?",
+            "Tell us about a time you overcame a challenge.",
+            "Where do you see yourself in 5 years?"
+        ];
+    
+        // Start the webcam and microphone, begin recording and show the first question
+        startButton.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                videoElement.srcObject = stream;
+    
+                // Initialize MediaRecorder to record the interview
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = event => recordedChunks.push(event.data);
+                mediaRecorder.start();
+    
+                // Get video and audio tracks
+                videoTrack = stream.getVideoTracks()[0];
+                audioTrack = stream.getAudioTracks()[0];
+    
+                // Record start time for interview
+                interviewStartTime = Date.now();
+    
+                // Enable the buttons after starting the stream
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                toggleVideoButton.disabled = false;
+                toggleAudioButton.disabled = false;
+    
+                // Display the questions section
+                questionsContainer.style.display = "block";
+                currentQuestion.textContent = `Question 1: ${questions[0]}`;
+    
+            } catch (error) {
+                console.error('Error accessing the webcam and microphone: ', error);
+            }
+        });
+    
+        // Stop the webcam, microphone, and recording
+        stopButton.addEventListener('click', () => {
+            // Stop the media stream
+            stream.getTracks().forEach(track => track.stop());
+    
+            // Stop the media recorder and save the recorded video
+            mediaRecorder.stop();
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const videoURL = URL.createObjectURL(blob);
+                recordedVideo.src = videoURL;
+                
+                // Show the rating section after recording stops
+                ratingContainer.style.display = "block";
+    
+                // Automatically rate the interview
+                autoRateInterview();
+            };
+    
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            toggleVideoButton.disabled = true;
+            toggleAudioButton.disabled = true;
+    
+            // Hide questions
+            questionsContainer.style.display = "none";
+        });
+    
+        // Toggle video on/off
+        toggleVideoButton.addEventListener('click', () => {
+            if (videoTrack.enabled) {
+                videoTrack.enabled = false;
+                toggleVideoButton.textContent = "Turn Video On";
+            } else {
+                videoTrack.enabled = true;
+                toggleVideoButton.textContent = "Turn Video Off";
+            }
+        });
+    
+        // Toggle microphone on/off
+        toggleAudioButton.addEventListener('click', () => {
+            if (audioTrack.enabled) {
+                audioTrack.enabled = false;
+                toggleAudioButton.textContent = "Unmute Microphone";
+            } else {
+                audioTrack.enabled = true;
+                toggleAudioButton.textContent = "Mute Microphone";
+            }
+        });
+    
+        // Next question handler
+        nextQuestionButton.addEventListener('click', () => {
+            questionIndex++;
+            if (questionIndex < questions.length) {
+                currentQuestion.textContent = `Question ${questionIndex + 1}: ${questions[questionIndex]}`;
+            } else {
+                nextQuestionButton.disabled = true; // Disable button when no more questions
+            }
+        });
+    
+        // Automated rating based on video length and microphone status
+        function autoRateInterview() {
+            const interviewEndTime = Date.now();
+            const interviewDuration = (interviewEndTime - interviewStartTime) / 1000; // duration in seconds
+    
+            let ratingValue = 3; // Start with an average rating
+    
+            // Rate based on interview length (longer interviews score higher)
+            if (interviewDuration > 60) {
+                ratingValue++;
+            }
+    
+            // Deduct points if the video or audio were disabled during the interview
+            if (!videoTrack.enabled) {
+                ratingValue--;
+            }
+    
+            if (!audioTrack.enabled) {
+                ratingValue--;
+            }
+    
+            // Cap the rating between 1 and 5
+            if (ratingValue > 5) ratingValue = 5;
+            if (ratingValue < 1) ratingValue = 1;
+    
+            // Set the rating
+            rating.value = ratingValue;
+    
+            // Provide feedback
+            alert(`Your interview rating is: ${ratingValue}`);
+        }
+    
+    
+</script>
+
+</body>
+</html>

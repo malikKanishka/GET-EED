@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Match</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-copy.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Match Analysis</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="job_description">Job Description</label>
+            <textarea id="job_description" name="job_description" rows="6" required></textarea>
+            
+            <label for="resume">Upload Resume</label>
+            <input type="file" id="resume" name="resume" accept=".pdf" required>
+            
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if matched_terms %}
+        <div class="results">
+            <p><strong>Match Probability:</strong> {{ match_percentage }}%</p>
+
+            <div class="chart-container">
+                <img src="data:image/png;base64,{{ chart_url }}" alt="Pie Chart">
+            </div>
+
+            <div class="matched-terms">
+                <h3>Matched Terms and Their Occurrences</h3>
+                <ul>
+                    {% for term, count in matched_terms.items() %}
+                        <li>{{ term }}: {{ count }} occurrence(s)</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="strong-points">
+                <h3>Strong Points (Frequently Occurring Terms)</h3>
+                <ul>
+                    {% for term, count in strong_points.items() %}
+                        <li>{{ term }}: {{ count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="weak-points">
+                <h3>Weak Points (Missing Terms)</h3>
+                <ul>
+                    {% for term in weak_points %}
+                        <li>{{ term }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <h2>Download PDF File</h2>
+    <p>PLEASE DOWNLOAD THIS FILE FOR REFERENCE</p>
+    <a href="{{ url_for('static', filename='Example CV.pdf') }}" download="REF_CV.pdf">Download PDF</a>
+
+</body>
+</html>

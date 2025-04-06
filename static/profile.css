@@ -1,0 +1,92 @@
+/* Background animation with RGB gradient */
+@keyframes colorChange {
+    0% { background-color: rgb(234, 224, 224); }
+    25% { background-color: rgb(235, 243, 231); }
+    50% { background-color: rgb(222, 228, 237); }
+    75% { background-color: rgb(239, 234, 192); }
+    100% { background-color: rgb(222, 237, 239); }
+}
+
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: rgb(30, 30, 30);
+    color: #ef0e0e; /* Dark text color */
+    margin: 0;
+    padding: 0;
+    animation: colorChange 5s infinite;
+}
+
+/* Centered and styled container */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(7, 221, 232, 0.1); 
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+/* Heading styling */
+h2 {
+    font-size: 2rem;
+    color: #010000;
+    text-align: center;
+    text-shadow: 0 4px 8px rgb(105, 101, 101);
+}
+
+/* Profile info styling */
+.profile-info p {
+    font-size: 1rem;
+    color: #333333; /* Dark text color */
+    margin: 8px 0;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Links and buttons */
+a {
+    color: #072eed;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.1ms ease;
+}
+
+a:hover {
+    color: #f60707f9;
+    text-shadow: 0 0 8px rgb(24, 4, 252);
+}
+
+/* Container for dynamic glow effect */
+.profile-info {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+}
+
+/* Container hover effects */
+.container:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-info p {
+        font-size: 0.9rem;
+    }
+}
